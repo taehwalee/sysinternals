@@ -33,7 +33,7 @@ process dump utility that you can embed in other scripts.
 
 **usage: procdump \[-a\] \[\[-c|-cl CPU usage\] \[-u\] \[-s seconds\]\]
 \[-n exceeds\] \[-e \[1 \[-b\]\] \[-f &lt;filter,...&gt;\] \[-g\] \[-h\]
-\[-l\] \[-m|-ml commit usage\] \[-ma | -mp\] \[-o\] \[-p|-pl counter
+\[-l\] \[-m|-ml commit usage\] \[-ma | -mp\] \[-mk] \[-o\] \[-p|-pl counter
 threshold\] \[-r\] \[-t\] \[-d &lt;callback DLL&gt;\] \[-64\] &lt;\[-w\]
 &lt;process name or service name or PID&gt; \[dump file\] | -i &lt;dump
 file&gt; | -u | -x &lt;dump file&gt; &lt;image file&gt; \[arguments\]
@@ -57,6 +57,7 @@ file&gt; | -u | -x &lt;dump file&gt; &lt;image file&gt; \[arguments\]
 | **-ma** | Write a dump file with all process memory. The default dump format only includes thread and  handle information. |
 | **-ml** | Trigger when memory commit drops below specified MB value. |
 | **-mp** | Write a dump file with thread and handle information, and all read/write process memory. To minimize dump size, memory areas larger than 512MB are searched   for, and if found, the largest area is excluded. A memory area  is the collection of same sized  memory allocation areas. The removal of this (cache) memory reduces Exchange and SQL Server  dumps by over 90%. |
+| **-mk** | Write a 'Kernel' dump file. Includes the kernel stacks of the threads in the process. OS doesn't support a kernel dump (-mk) when using a clone (-r). When using multiple dump sizes, a kernel dump is taken for each dump size |
 | **-n** | Number of dumps to write before  exiting. |
 | **-o** | Overwrite an existing dump file.  |
 | **-p** | Trigger on the specified performance counter when the threshold is exceeded. Note: to  specify a process counter when   there are multiple instances of  the process running, use the     process ID with the following syntax: "\\Process(&lt;name&gt;\_&lt;pid&gt;)\\counter" |
